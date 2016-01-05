@@ -9,8 +9,9 @@ case class Vendor(override val name: String) extends SinghamNode[Vendor]
 
 case class SubjectArea(override val name: String) extends SinghamNode[SubjectArea]
 
-case class Product(override val name: String) extends SinghamNode[Product] {
+case class App(override val name: String) extends SinghamNode[App] {
   def -->(edge: Supplier): Supplier = startEdge(this, edge).asInstanceOf[Supplier]
+  def -->(edge: Contact): Contact = startEdge(this, edge).asInstanceOf[Contact]
 }
 
 case class EnterpriseArchitect() extends SinghamEdge[Person,SubjectArea] {
@@ -20,9 +21,16 @@ case class EnterpriseArchitect() extends SinghamEdge[Person,SubjectArea] {
 
 }
 
-case class Supplier() extends SinghamEdge[Product,Vendor] {
+case class Supplier() extends SinghamEdge[App,Vendor] {
 
   def --> (nodeB: Vendor): Vendor = endEdge(nodeB)
   def --> (nodes: List[Vendor]): Unit = endEdge(nodes)
+
+}
+
+case class Contact() extends SinghamEdge[App,Person] {
+
+  def --> (nodeB: Person): Person = endEdge(nodeB)
+  def --> (nodes: List[Person]): Unit = endEdge(nodes)
 
 }

@@ -8,11 +8,10 @@ object SinghamSchema extends App with io.singham.foundation.SchemaPrimitives {
 
     import scala.collection.immutable.ListSet
 
-    ListSet("Person", "SubjectArea", "Vendor", "Product", "opportunity", "strategy").foreach(defineVertex)
-    ListSet("EnterpriseArchitect", "Supplier").foreach(defineEdge)
     ListSet("depth_chart", "name").foreach(defineProperty)
+    ListSet("Person", "SubjectArea", "Vendor", "App", "opportunity", "strategy").foreach(defineVertex)
+    ListSet("EnterpriseArchitect", "Supplier", "Contact").foreach(defineEdge)
     
-
   }
 
 }

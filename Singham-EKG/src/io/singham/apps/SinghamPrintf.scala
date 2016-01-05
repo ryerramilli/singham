@@ -8,7 +8,7 @@ object SinghamPrintf extends App with io.singham.foundation.GraphApp {
     
     import io.singham.foundation.SinghamStore
     
-    List("Person", "Product").foreach { island =>
+    List("Person", "App").foreach { island =>
       
       SinghamStore.graph.V.hasLabel(island).sideEffect(v => logger.info(v.property("name").value()))
         .out().sideEffect(v => logger.info("==" + v.property("name").value()))

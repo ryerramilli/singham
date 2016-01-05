@@ -11,8 +11,18 @@ trait SchemaPrimitives extends SinghamLogging {
   def defineVertex(vertex: String) {
     if (manager.containsVertexLabel(vertex))
       logger.warn(s"Vertex,$vertex, already exists, skipping creation")
-    else
-      manager.makeVertexLabel(vertex).make
+    else {
+      
+      val vertexLabel = manager.makeVertexLabel(vertex).make
+      
+      val nameKey = manager.getPropertyKey("name")
+      manager.buildIndex(s"unique-vertex-$vertex-name", classOf[TitanVertex])
+          .addKey(nameKey)
+          .indexOnly(vertexLabel)
+          .unique()
+          .buildCompositeIndex()
+          
+    }
   }
 
   def defineEdge(edge: String) {
@@ -36,11 +46,6 @@ trait SchemaPrimitives extends SinghamLogging {
           .dataType(classOf[java.lang.String])
           .cardinality(Cardinality.SINGLE)
           .make
-          
-        manager.buildIndex(s"unique-vertex-$property", classOf[TitanVertex])
-          .addKey(propertyKey)
-          .unique()
-          .buildCompositeIndex()
 
       }
     }

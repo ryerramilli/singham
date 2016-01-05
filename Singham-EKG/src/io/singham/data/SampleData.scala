@@ -31,9 +31,9 @@ object SampleData
 
       Person("Wei Manfredi") --> EnterpriseArchitect() --> SubjectArea("Customer")
       
-      Product("Sparx")  --> Supplier() --> Vendor("Sparx Systems")
+      App("Sparx")  --> Supplier() --> Vendor("Sparx Systems")
       
-      Product("IgniteXML") --> Supplier() --> Vendor("digitalML")
+      App("IgniteXML") --> Supplier() --> Vendor("digitalML")
 
     })
 
