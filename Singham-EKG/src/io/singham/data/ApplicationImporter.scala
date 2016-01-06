@@ -1,47 +1,50 @@
 package io.singham.data
 
+import io.singham.utils.poi.Implicits._
+import scala.collection.JavaConversions._
+
 object ApplicationImporter
     extends App
-    with io.singham.foundation.GraphApp {
+    with io.singham.foundation.GraphApp
+    with io.singham.foundation.SinghamLogging {
+  
+  import java.io.FileInputStream
+  import io.singham.dsl._
 
-  def importx() {
-
-    import org.apache.poi.xssf.usermodel._
-
-    import java.io.FileInputStream
-
-    val fis = new FileInputStream("Applications.xlsx");
+  runTransaction(() => {
+    
+    val excel = new FileInputStream("Applications.xlsx");
 
     try {
+      
+      excel.sheet("Detail").rows.filter(_.isValid ).foreach { row =>
 
-      val workbook = new XSSFWorkbook(fis);
-
-      val sheet = workbook.getSheet("Detail")
-
-      var idx = 0
-      for (idx <- sheet.getFirstRowNum until sheet.getLastRowNum) {
-
-        val row = sheet.getRow(idx)
-
-        val cell = row.getCell(3)
-        val ownerCell = row.getCell(4)
-
-        import io.singham.dsl._
-
-        if (ownerCell.getStringCellValue.trim().length() > 0 && cell.getStringCellValue.trim().length() > 0)
-          App(cell.getStringCellValue) --> Contact() --> Person(ownerCell.getStringCellValue)
-        else
-          println("Found empty cells")
-
+        App(row.appName) --> Contact() --> Person(row.contactName)
+        
       }
 
     } finally {
-
-      fis.close();
-
+      
+      excel.close();
+      
     }
+    
+  })
+  
+  implicit class RowImplicit(row: org.apache.poi.ss.usermodel.Row) {
+    
+    def appName : String = row.getCell(3).getStringCellValue.trim()
+    def contactName : String = row.getCell(4).getStringCellValue.trim()
+    
+    def isValid() : Boolean  = {
+      
+      val notValid = appName.isEmpty()  || contactName.isEmpty()
+      
+      if(notValid) logger.warn("!!!! ****** Found empty cells ******* !!!!")
+      
+      !notValid
+    }
+    
   }
-
-  runTransaction(importx)
 
 }

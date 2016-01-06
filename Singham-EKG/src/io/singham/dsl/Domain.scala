@@ -1,5 +1,6 @@
 package io.singham.dsl
 
+/*** Nodes ***/
 case class Person(override val name: String) extends SinghamNode[Person] {
   def -->(edge: EnterpriseArchitect): EnterpriseArchitect = startEdge(this, edge).asInstanceOf[EnterpriseArchitect]
 }
@@ -14,6 +15,7 @@ case class App(override val name: String) extends SinghamNode[App] {
   def -->(edge: Contact): Contact = startEdge(this, edge).asInstanceOf[Contact]
 }
 
+/*** Edges ***/
 case class EnterpriseArchitect() extends SinghamEdge[Person,SubjectArea] {
   
   def --> (nodeB: SubjectArea): SubjectArea = endEdge(nodeB)
