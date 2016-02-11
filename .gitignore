@@ -2,3 +2,23 @@
 *.class
 
 .metadata
+
+*.jar
+
+Singham-EKG/.cache-main
+
+*.timestamp
+
+Singham-EKG/.cache-main
+
+Singham-Schema/.cache-main
+
+singham-service/.cache-main
+
+singham-service/.cache-tests
+
+singham-apps/.cache-main
+
+Singham-EKG/.cache-main
+
+Singham-EKG/.cache-main
