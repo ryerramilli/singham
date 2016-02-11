@@ -1,0 +1,9 @@
+<template name="roadmaps">
+    {{> roadmaps_listing}}
+</template>
+
+<template name="roadmaps_listing">
+{{#each list}}
+<p><a href="/roadmaps/{{name}}">{{name}}</a></p>
+{{/each}}
+</template>

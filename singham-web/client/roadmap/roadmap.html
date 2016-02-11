@@ -1,0 +1,77 @@
+<template name="roadmap">
+
+<h1>{{title}} Roadmap</h1>
+
+<a href="/roadmaps/Mergers">Click Me</a>
+
+<section>
+<div id="calendar">
+{{#each calendar}}
+	<div class="certain" style="left: {{timeOffset}}px">{{month}}</div>
+	<div class="gridlines {{tiling}}" style="left: {{timeOffset}}px"></div>
+{{/each}}
+<div class="clear"></div>
+<div class="filler">Filler</div>
+</div>
+
+{{#each swimlanes}}
+	{{> swimlane}}
+{{/each}}
+
+</section>
+</template>
+
+<template name="swimlane">
+
+<div class="swimlane">
+	<div id="{{opp_elem_id}}" class="swimmer {{entry.role}}"  style="left: {{entry.opportunity.timeOffset}}px; width: {{entry.opportunity.timePeriod}}px">
+	
+	<span>{{entry.opportunity.name}}</span>
+	
+	{{> opportunity_fly_out}}
+	
+	</div>
+</div>
+
+</template>
+
+<template name="opportunity_fly_out">
+	
+	<div id="{{fly_out_elem_id}}" class="opp_fly_out"> 
+		
+		<nav>
+			<div><a href="{{capability_heatmap_url}}">Capability heat map</a></div>
+		</nav>
+		<dl>
+			<dt>Ebit Projection</dt>
+			<dd>{{entry.opportunity.ebit.amount}}</dd>
+			<dt>Ebit Projection Confidence</dt>
+			<dd>{{entry.opportunity.ebit.confidence}}</dd>
+			<dt>Start Date</dt>
+			<dd>{{entry.opportunity.startDate}}</dd>
+			<dt>Role</dt>
+			<dd>{{entry.role}}</dd>
+		</dl>
+		
+		<hr/>
+		{{> cross_referenced_roadmaps}}
+	
+		<button class="close">close</button>
+	</div>
+	
+</template>
+
+<template name="cross_referenced_roadmaps">
+	   
+	   <dl class="x-roamdaps">
+			<dt>X Roadmaps</dt>
+			{{#each xroadmaps}}
+				{{#if other_roadmap}}
+				<dd>
+				<a href="{{pathFor route='roadmap_details'}}">{{name}}</a>
+				<button data-x-roadmap="{{name}}">{{name}}</button>
+				</dd>
+				{{/if}}
+			{{/each}}
+		</dl>
+</template>
