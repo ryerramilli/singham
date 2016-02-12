@@ -72,7 +72,6 @@
 			<groupId>org.apache.tinkerpop</groupId>
 			<artifactId>gremlin-core</artifactId>
 			<version>3.0.1-incubating</version>
-			<scope>runtime</scope>
 		</dependency>
 		
 		<dependency>
@@ -80,13 +79,6 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.13</version>
 		</dependency>
-		<!--  
-		<dependency>
-		  <groupId>org.geekolator.singham</groupId>
-  		  <artifactId>singham_commons</artifactId>
-		  <version>0.0.1-SNAPSHOT</version>
-	    </dependency>
-	    -->
 		
         <dependency>
             <groupId>junit</groupId>
