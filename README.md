@@ -19,7 +19,18 @@ For fun -)
 
 ## Installation
 
-Coming soon...
+#### singham-webapp
+This is the primary web interface for end users to view the roadmaps and capability heatmaps
+
+#### singham-service
+Provides REST APIs to query the graph data store
+
+#### singham-apps
+A collection of console apps to load nodes into the graph database
+
+#### singham-schema
+A console application to manipulate the schema of the graph database
+
 
 ## API Reference
 
