@@ -1,3 +1,6 @@
+Router.route('/',  function() {
+	this.render('roadmaps');
+})
 Router.route('/roadmaps');
 Router.route('/roadmaps/:_roadmap_name', function() {
 	this.render('roadmap');
