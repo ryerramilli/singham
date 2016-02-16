@@ -22,3 +22,5 @@ singham-apps/.cache-main
 Singham-EKG/.cache-main
 
 Singham-EKG/.cache-main
+
+singham-webapp/node_modules

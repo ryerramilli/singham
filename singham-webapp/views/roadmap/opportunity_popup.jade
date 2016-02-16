@@ -1,0 +1,34 @@
+// opportunity fly out
+div(id='fly_out_elem_id' class='opp_fly_out')
+  nav
+    div: a(href='capability_heatmap_url') Capability heat amp
+  #swimlane
+  dl
+    dt Ebit Projection
+    dd
+      if swimlane.opportunity.ebit
+        #{swimlane.opportunity.ebit.amount}
+
+    dt Ebit projection confidence
+    dd
+      if swimlane.opportunity.ebit
+        swimlane.opportunity.ebit.confidence
+
+    dt Start date
+    dd #{swimlane.opportunity.startDate}
+
+    dt Role
+    dd #{swimlane.role}
+
+  hr
+
+  // cross referenced roadmaps
+  if swimlane.opportunity.xroadmaps
+    dl(class='x-roadmaps')
+      dt X Roadmaps
+      each xroadmap in swimlane.opportunity.xroadmaps
+        dd
+          a(href='path_to_roadmap_details') #{xroadmap.name}
+          button(data-x-roadmap='x-roadmap-name') #{xroadmap.name}
+
+  button(class='close') close
