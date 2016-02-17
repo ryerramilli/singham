@@ -5,6 +5,8 @@
 
 *.jar
 
+**/*.swp
+
 Singham-EKG/.cache-main
 
 *.timestamp
@@ -24,3 +26,9 @@ Singham-EKG/.cache-main
 Singham-EKG/.cache-main
 
 singham-webapp/node_modules
+
+singham-webapp/src/node_modules
+
+singham-webapp/__publish
+
+singham-webapp/*.zip
