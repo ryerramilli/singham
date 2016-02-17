@@ -12,7 +12,7 @@ For fun :-)
 
 ## Installation
 
-gulp 
+$  gulp 
 
 This will produce a zip file that can then uploaded to AWS Beanstalk.
 
