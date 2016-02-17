@@ -12,7 +12,11 @@ For fun :-)
 
 ## Installation
 
-Coming soon ..
+gulp 
+
+This will produce a zip file that can then uploaded to AWS Beanstalk.
+
+gulp tasks to deploy to AWS Beanstalk is on the way.
 
 ## API Reference
 
