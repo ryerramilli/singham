@@ -163,14 +163,14 @@
 	<build>
 		<sourceDirectory>src/main/scala</sourceDirectory>
 		<testSourceDirectory>src/test/scala</testSourceDirectory>
-		
+
 		<resources>
 		   <resource>
 		      <directory>src/main/resources</directory>
 		      <filtering>true</filtering>
 		   </resource>
 		</resources>
-		
+
 		<plugins>
 
 			<plugin>
@@ -227,6 +227,42 @@
 						<include>**/*Suite.*</include>
 					</includes>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>br.com.ingenieux</groupId>
+        <artifactId>beanstalk-maven-plugin</artifactId>
+				<configuration>
+					<regionName>us-west-2</regionName>
+					<s3Bucket>singham-service-0.0.1-snapshot</s3Bucket>
+
+					<VersionLabel>${project.version}</VersionLabel>
+					<cnamePrefix>${project.name}-${beanstalk.environmentName}</cnamePrefix>
+					<solutionStack>64bit Amazon Linux 2015.09 v2.0.7 running Tomcat 8 Java 8</solutionStack>
+
+					<optionSettings>
+
+						<optionSetting>
+	            <namespace>aws:autoscaling:launchconfiguration</namespace>
+	            <optionName>IamInstanceProfile</optionName>
+							<value>aws-elasticbeanstalk-ec2-role</value>
+						</optionSetting>
+
+						<optionSetting>
+	            <namespace>aws:autoscaling:launchconfiguration</namespace>
+	            <optionName>InstanceType</optionName>
+							<value>t1.micro</value>
+						</optionSetting>
+
+						<optionSetting>
+	            <namespace>aws:elasticbeanstalk:environment</namespace>
+	            <optionName>ServiceRole</optionName>
+							<value>aws-elasticbeanstalk-service-role</value>
+						</optionSetting>
+
+					</optionSettings>
+				</configuration>
+
 			</plugin>
 		</plugins>
 	</build>

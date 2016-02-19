@@ -12,7 +12,9 @@ For fun :-)
 
 ## Installation
 
-$  gulp 
+AWS credentials will be picked up from ~/.aws/credentials
+
+$  gulp
 $  gulp deploy
 
 This will produce a zip file that can then uploaded to AWS Beanstalk.
@@ -29,7 +31,7 @@ Coming soon ...
 
 ## Contributors
 
-Comming soon ...
+Coming soon ...
 
 ## License
 
