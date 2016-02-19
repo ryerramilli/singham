@@ -1,8 +1,11 @@
 var gulp = require('gulp');
 var zip = require('gulp-zip');
 var runSequence = require('run-sequence');
+var awsBeanstalk = require("node-aws-beanstalk");
 var del = require('del');
 var fs = require("fs");
+var logger = require("log4js");
+global.logger = logger;
 
 var pkgContent = fs.readFileSync("./src/package.json");
 var pkg = JSON.parse(pkgContent);
@@ -34,6 +37,17 @@ gulp.task('package', function() {
   return gulp.src([ publishFolder + '/**/*'])
     .pipe(zip(artifact))
     .pipe(gulp.dest('.'));
+});
+
+gulp.task('deploy', function(callback) {
+
+  var beanstalkConfig = require("./beanstalk-config.js");
+
+  beanstalkConfig["appName"] = pkg.name;
+  beanstalkConfig["CNAMEPrefix"] = pkg.name;
+  beanstalkConfig.bucketConfig["Bucket"] = pkg.name + "bbb";
+
+  awsBeanstalk.deploy(artifact, beanstalkConfig, callback);
 });
 
 gulp.task('default', function(callback) {
