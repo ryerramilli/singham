@@ -13,6 +13,7 @@ For fun :-)
 ## Installation
 
 $  gulp 
+$  gulp deploy
 
 This will produce a zip file that can then uploaded to AWS Beanstalk.
 
@@ -20,7 +21,7 @@ gulp tasks to deploy to AWS Beanstalk is on the way.
 
 ## API Reference
 
-Coming soon ... 
+Coming soon ...
 
 ## Tests
 
