@@ -21,7 +21,16 @@ For fun -)
 
 $ aws s3 mb s3://singham-service-0.0.1-snapshot --region us-west-2
 
+mvn compile war:war -Dtitan.backend=dynamodb -Denvironment=integration
+
 $  mvn beanstalk:upload-source-bundle beanstalk:create-application-version beanstalk:create-environment -Dbeanstalk.environmentName=intg
+
+#### Test
+
+curl http://singham-service-intg/us-west-2/elasticbeanstalk.com/apps/99
+
+output
+[99]
 
 ## API Reference
 

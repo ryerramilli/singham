@@ -22,6 +22,7 @@
 		<scala.version>2.11.6</scala.version>
 		<scala.compat.version>2.11</scala.compat.version>
 		<aws.java.sdk.version>[1.10.5.1, 2.0.0)</aws.java.sdk.version>
+		<beanstalk.versionLabel>${project.version}</beanstalk.versionLabel>
 	</properties>
 
 	<dependencies>
@@ -236,7 +237,6 @@
 					<regionName>us-west-2</regionName>
 					<s3Bucket>singham-service-0.0.1-snapshot</s3Bucket>
 
-					<VersionLabel>${project.version}</VersionLabel>
 					<cnamePrefix>${project.name}-${beanstalk.environmentName}</cnamePrefix>
 					<solutionStack>64bit Amazon Linux 2015.09 v2.0.7 running Tomcat 8 Java 8</solutionStack>
 
