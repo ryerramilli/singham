@@ -170,13 +170,9 @@ trait SchemaPrimitives extends SinghamLogging {
     logger.info(config.getString("singham.environment"))
     logger.info(config.getString("singham.titan-backend"))
       
-//    val propFile = "%s.%s.titandb.properties".format(
-//        conf.getString("singham.environment"), 
-//        conf.getString("singham.titan-backend"))
-    
     val propFile = "%s.%s.titandb.properties".format(
-        environemnt, 
-        backend)
+        config.getString("singham.environment"), 
+        config.getString("singham.titan-backend"))
         
     val p = new PropertiesConfiguration(propFile)
     
