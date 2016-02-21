@@ -23,7 +23,7 @@ object Configuration  extends Logging {
 
     val p = new PropertiesConfiguration(propFile)
     
-    logger.info(s"Configuring titan using ${p.getFile.getCanonicalPath}")
+    logger.info(s"Configuring titan using ${p.getFile}")
     
     return p
     
