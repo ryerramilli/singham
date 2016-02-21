@@ -24,9 +24,6 @@ import org.apache.commons.configuration.PropertiesConfiguration
 
 trait SchemaPrimitives extends SinghamLogging {
   
-  val environemnt = "integration"
-  val backend = "dynamodb"
-  
   import com.thinkaurelius.titan.core._
   import org.apache.tinkerpop.gremlin.structure.Vertex
   import com.thinkaurelius.titan.core.schema.TitanManagement
@@ -176,7 +173,7 @@ trait SchemaPrimitives extends SinghamLogging {
         
     val p = new PropertiesConfiguration(propFile)
     
-    environemnt match {
+    setup.environemnt match {
       case "local" => logger.warn("There are no secrets when running locally")
       case _ => addSecrets(p)
     }
@@ -189,7 +186,7 @@ trait SchemaPrimitives extends SinghamLogging {
   
   private def addSecrets(properties: PropertiesConfiguration) { 
               
-    backend match {
+    setup.backend match {
       
       case "dynamodb" => {
         
