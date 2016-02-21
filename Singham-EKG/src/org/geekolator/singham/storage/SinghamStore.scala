@@ -1,6 +1,7 @@
 package org.geekolator.singham.storage
 
-import org.geekolator.singham.SinghamLogging;
+import org.geekolator.singham.SinghamLogging
+import org.geekolator.singham.configuration.Configuration
 import gremlin.scala.GraphAsScala
 import gremlin.scala.ScalaGraph
 import org.apache.tinkerpop.gremlin.structure.Transaction

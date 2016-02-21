@@ -1,9 +1,7 @@
-package org.geekolator.singham.storage
-
-import org.geekolator.singham.SinghamLogging
+package org.geekolator.singham.configuration
 
 import org.apache.commons.configuration.PropertiesConfiguration
-object Configuration  extends SinghamLogging {
+object Configuration  extends Logging {
   
   def asProperties () : PropertiesConfiguration = {
     
@@ -23,9 +21,11 @@ object Configuration  extends SinghamLogging {
       setup.environemnt,
       setup.backend)
 
-    logger.info(s"Configuring titan using $propFile")
-
-    new PropertiesConfiguration(propFile)
+    val p = new PropertiesConfiguration(propFile)
+    
+    logger.info(s"Configuring titan using ${p.getFile.getCanonicalPath}")
+    
+    return p
     
   }
 

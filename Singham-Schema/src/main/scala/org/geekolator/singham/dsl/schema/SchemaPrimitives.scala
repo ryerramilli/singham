@@ -159,50 +159,14 @@ trait SchemaPrimitives extends SinghamLogging {
   
   private def instantiateGraph() : TitanGraph = {
     
+     val properties = org.geekolator.singham.configuration.Configuration.asProperties()
     
     logger.info("Instantiating graph for thread # " + Thread.currentThread.getId)
-    
-    val config = ConfigFactory.load()
-        
-    logger.info(config.getString("singham.environment"))
-    logger.info(config.getString("singham.titan-backend"))
-      
-    val propFile = "%s.%s.titandb.properties".format(
-        config.getString("singham.environment"), 
-        config.getString("singham.titan-backend"))
-        
-    val p = new PropertiesConfiguration(propFile)
-    
-    setup.environemnt match {
-      case "local" => logger.warn("There are no secrets when running locally")
-      case _ => addSecrets(p)
-    }
-        
-    logger.info(s"Configuring titan using $propFile")
-      
-    TitanFactory.open(p)
+     
+    TitanFactory.open(properties)
     
   }
-  
-  private def addSecrets(properties: PropertiesConfiguration) { 
-              
-    setup.backend match {
-      
-      case "dynamodb" => {
-        
-        import com.amazonaws.auth.profile.ProfileCredentialsProvider
 
-        val credentials = new ProfileCredentialsProvider().getCredentials()
-
-        properties.addProperty("storage.dynamodb.client.credentials.constructor-args",
-          "%s,%s".format(credentials.getAWSAccessKeyId, credentials.getAWSSecretKey))
-          
-      }
-      
-      case _ =>
-    }
-
-  }
   
   private def instantiateManager() : TitanManagement = {
     

@@ -1,6 +1,4 @@
-package org.geekolator.singham.storage
-
-import org.geekolator.singham.SinghamLogging
+package org.geekolator.singham.configuration
 
 import akka.actor.ActorSystem
 import akka.io.IO
@@ -17,7 +15,7 @@ import spray.json.pimpString
 import scala.concurrent.Await
 import spray.can.Http
 
-object S3 extends SinghamLogging {
+object S3 extends Logging {
 
   def downloadAsString_Blocking(path: String): String = {
 

@@ -1,8 +1,8 @@
-package org.geekolator.singham.dsl
+package org.geekolator.singham
 
 import com.typesafe.config.{Config,ConfigFactory}
 
-package object schema {
+package object configuration {
   
   case class Setup(environemnt : String, backend: String)
   
