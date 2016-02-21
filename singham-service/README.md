@@ -27,7 +27,7 @@ $  mvn beanstalk:upload-source-bundle beanstalk:create-application-version beans
 
 #### Test
 
-curl http://singham-service-intg/us-west-2/elasticbeanstalk.com/apps/99
+$  curl http://singham-service-intg/us-west-2/elasticbeanstalk.com/apps/99
 
 output
 [99]

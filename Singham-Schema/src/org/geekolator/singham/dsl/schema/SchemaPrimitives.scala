@@ -1,6 +1,7 @@
 package org.geekolator.singham.dsl.schema
 
 import com.thinkaurelius.titan.core.Cardinality
+
 import com.thinkaurelius.titan.core.EdgeLabel
 import com.thinkaurelius.titan.core.Multiplicity
 import com.thinkaurelius.titan.core.PropertyKey
@@ -19,7 +20,12 @@ import com.thinkaurelius.titan.core.TitanVertex
 import com.thinkaurelius.titan.core.VertexLabel
 import org.apache.tinkerpop.gremlin.structure.Vertex
 
+import org.apache.commons.configuration.PropertiesConfiguration
+
 trait SchemaPrimitives extends SinghamLogging {
+  
+  val environemnt = "integration"
+  val backend = "dynamodb"
   
   import com.thinkaurelius.titan.core._
   import org.apache.tinkerpop.gremlin.structure.Vertex
@@ -133,8 +139,6 @@ trait SchemaPrimitives extends SinghamLogging {
   def getProperties() : List[PropertyKey] = manager.getRelationTypes(classOf[PropertyKey]).toList
   
   def getEdges() : List[EdgeLabel] = manager.getRelationTypes(classOf[EdgeLabel]).toList
-    
- 
   
   def getIndexes()  {
     
@@ -158,22 +162,53 @@ trait SchemaPrimitives extends SinghamLogging {
   
   private def instantiateGraph() : TitanGraph = {
     
+    
     logger.info("Instantiating graph for thread # " + Thread.currentThread.getId)
     
-    val conf = ConfigFactory.load()
+    val config = ConfigFactory.load()
+        
+    logger.info(config.getString("singham.environment"))
+    logger.info(config.getString("singham.titan-backend"))
       
 //    val propFile = "%s.%s.titandb.properties".format(
 //        conf.getString("singham.environment"), 
 //        conf.getString("singham.titan-backend"))
-      
+    
     val propFile = "%s.%s.titandb.properties".format(
-        "integration", 
-        "dynamodb")
+        environemnt, 
+        backend)
+        
+    val p = new PropertiesConfiguration(propFile)
+    
+    environemnt match {
+      case "local" => logger.warn("There are no secrets when running locally")
+      case _ => addSecrets(p)
+    }
         
     logger.info(s"Configuring titan using $propFile")
       
-    TitanFactory.open(propFile)
+    TitanFactory.open(p)
     
+  }
+  
+  private def addSecrets(properties: PropertiesConfiguration) { 
+              
+    backend match {
+      
+      case "dynamodb" => {
+        
+        import com.amazonaws.auth.profile.ProfileCredentialsProvider
+
+        val credentials = new ProfileCredentialsProvider().getCredentials()
+
+        properties.addProperty("storage.dynamodb.client.credentials.constructor-args",
+          "%s,%s".format(credentials.getAWSAccessKeyId, credentials.getAWSSecretKey))
+          
+      }
+      
+      case _ =>
+    }
+
   }
   
   private def instantiateManager() : TitanManagement = {

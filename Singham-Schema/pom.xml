@@ -27,7 +27,7 @@
 	    <encoding>UTF-8</encoding>
 	    <scala.version>2.11.6</scala.version>
 	    <scala.compat.version>2.11</scala.compat.version>
-	    <aws.java.sdk.version>[1.10.5.1, 2.0.0)</aws.java.sdk.version>
+	    <aws.java.sdk.version>1.10.54</aws.java.sdk.version>
 	  </properties>
   
     <dependencies>
@@ -100,12 +100,24 @@
 		    <version>4.4</version>
 		    <scope>runtime</scope>
 		</dependency>
+		<!-- 
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk</artifactId>
+			
+			<version__>1.10.54</version__>
+			
+			<version>${aws.java.sdk.version}</version>
+		</dependency>
+		-->
+
 		
 		<dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk-dynamodb</artifactId>
             <version>${aws.java.sdk.version}</version>
         </dependency>
+  
         
 	     <dependency>
 		    <groupId>com.amazonaws</groupId>
