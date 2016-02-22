@@ -28,7 +28,17 @@ class GraphServiceActor extends HttpServiceActor {
   import SinghamJsonFormats._
 
   def receive = runRoute {
-
+    
+    path("meta") {
+        get {
+          
+          respondWithMediaType(spray.http.MediaTypes.`application/json`)  {
+            complete {
+              About.details.toJson(mapFormat).toString()
+            }
+          }
+        }
+    } ~
     path("apps" / IntNumber) {
       name =>
         get {

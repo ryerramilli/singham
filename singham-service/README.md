@@ -19,15 +19,15 @@ For fun -)
 
 ## Installation
 
-$ aws s3 mb s3://singham-service-0.0.1-snapshot --region us-west-2
+$  aws s3 mb s3://singham-service-0.0.1-snapshot --region us-west-2
 
-mvn compile war:war -Dtitan.backend=dynamodb -Denvironment=integration
+$  mvn compile war:war -Dtitan.backend=dynamodb 
 
-$  mvn beanstalk:upload-source-bundle beanstalk:create-application-version beanstalk:create-environment -Dbeanstalk.environmentName=intg
+$  mvn beanstalk:upload-source-bundle beanstalk:create-application-version beanstalk:create-environment -Dbeanstalk.environmentName=intg -Dsingham.environemnt=integration
 
 #### Test
 
-$  curl http://singham-service-intg/us-west-2/elasticbeanstalk.com/apps/99
+$  curl http://singham-service-intg/us-west-2/elasticbeanstalk.com/meta
 
 output
 [99]

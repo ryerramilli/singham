@@ -166,10 +166,10 @@
 		<testSourceDirectory>src/test/scala</testSourceDirectory>
 
 		<resources>
-		   <resource>
-		      <directory>src/main/resources</directory>
-		      <filtering>true</filtering>
-		   </resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
 		</resources>
 
 		<plugins>
@@ -232,7 +232,7 @@
 
 			<plugin>
 				<groupId>br.com.ingenieux</groupId>
-        <artifactId>beanstalk-maven-plugin</artifactId>
+				<artifactId>beanstalk-maven-plugin</artifactId>
 				<configuration>
 					<regionName>us-west-2</regionName>
 					<s3Bucket>singham-service-0.0.1-snapshot</s3Bucket>
@@ -243,21 +243,27 @@
 					<optionSettings>
 
 						<optionSetting>
-	            <namespace>aws:autoscaling:launchconfiguration</namespace>
-	            <optionName>IamInstanceProfile</optionName>
+							<namespace>aws:autoscaling:launchconfiguration</namespace>
+							<optionName>IamInstanceProfile</optionName>
 							<value>aws-elasticbeanstalk-ec2-role</value>
 						</optionSetting>
 
 						<optionSetting>
-	            <namespace>aws:autoscaling:launchconfiguration</namespace>
-	            <optionName>InstanceType</optionName>
+							<namespace>aws:autoscaling:launchconfiguration</namespace>
+							<optionName>InstanceType</optionName>
 							<value>t1.micro</value>
 						</optionSetting>
 
 						<optionSetting>
-	            <namespace>aws:elasticbeanstalk:environment</namespace>
-	            <optionName>ServiceRole</optionName>
+							<namespace>aws:elasticbeanstalk:environment</namespace>
+							<optionName>ServiceRole</optionName>
 							<value>aws-elasticbeanstalk-service-role</value>
+						</optionSetting>
+						
+						<optionSetting>
+							<namespace>aws:elasticbeanstalk:application:environment</namespace>
+							<optionName>singham.environment</optionName>
+							<value>${singham.environment}</value>
 						</optionSetting>
 
 					</optionSettings>
