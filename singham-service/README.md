@@ -20,6 +20,7 @@ For fun -)
 ## Pre-Installation
 
 $  aws iam create-policy --policy-name credential-access-titandb --policy-document file://credential-access-titandb.policy
+
 $  aws iam attach-role-policy --policy-arn arn:aws:iam::YOUR-ACCOUNT-NUMBER:policy/credential-access-titandb --role-name  aws-elasticbeanstalk-ec2-role
 
 ## Installation
@@ -35,7 +36,8 @@ $  mvn beanstalk:upload-source-bundle beanstalk:create-application-version beans
 $  curl http://singham-service-intg/us-west-2/elasticbeanstalk.com/meta
 
 output
-[99]
+
+{"environment":"integration","titan.backend":"dynamodb"}
 
 ## API Reference
 
