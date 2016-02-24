@@ -10,9 +10,10 @@ object SecretsStore extends Logging {
 
     } catch {
 
-      case _: Throwable => {
+      case e: Throwable => {
         
-        logger.warn("We prevented from accessing secrets in s3, look in local")
+        logger.warn(e.getMessage)
+        logger.warn("We are prevented from accessing secrets in s3, look in local")
         fromLocal
       }
 
@@ -27,7 +28,7 @@ object SecretsStore extends Logging {
 
     implicit val format = jsonFormat2(KeyDetails)
 
-    val secretsPath = "%s.%s.titandb.json".format(setup.environemnt, setup.backend)
+    val secretsPath = "%s-%s-titandb-credentials.json".format(setup.environemnt, setup.backend)
 
     val content = S3.downloadAsString_Blocking(secretsPath)
 
