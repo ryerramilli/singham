@@ -17,11 +17,16 @@ Coming soon...
 
 For fun -)
 
+## Pre-Installation
+
+$  aws iam create-policy --policy-name credential-access-titandb --policy-document file://credential-access-titandb.policy
+$  aws iam attach-role-policy --policy-arn arn:aws:iam::YOUR-ACCOUNT-NUMBER:policy/credential-access-titandb --role-name  aws-elasticbeanstalk-ec2-role
+
 ## Installation
 
 $  aws s3 mb s3://singham-service-0.0.1-snapshot --region us-west-2
 
-$  mvn compile war:war -Dtitan.backend=dynamodb 
+$  mvn compile war:war -Dtitan.backend=dynamodb
 
 $  mvn beanstalk:upload-source-bundle beanstalk:create-application-version beanstalk:create-environment -Dbeanstalk.environmentName=intg -Dsingham.environemnt=integration
 

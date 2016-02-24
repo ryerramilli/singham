@@ -19,9 +19,7 @@ object S3 extends Logging {
     val stream = s3Object.getObjectContent
     
     try {
-    
       scala.io.Source.fromInputStream(stream).getLines().mkString("\n")
-    
     }
     finally {
       stream.close
