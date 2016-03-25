@@ -1,23 +1,17 @@
 extends layout
 
+include ./roadmap/opportunity.jade
+
 block content
   h2= title
 
   section
-    div#calendar
 
-      each cell in details.calendar
-        div(class='certain' style='left: #{cell.timeOffset}px') #{cell.month}
-        div(class='gridlines #{cell.tiling}' style='left: #{cell.timeOffset}px')
+    svg(width='100%' height='600')
+      include ./roadmap/calendar.jade
 
-    div(class='clear')
-    div(class='filler') Filler
-
-    each swimlane in details.swimlanes
-      div(class='swimlane')
-        div(class='swimmer #{swimlane.role}' style='left: #{swimlane.opportunity.timeOffset}px; width: #{swimlane.opportunity.timePeriod}px')
-          span #{swimlane.opportunity.name}
-          include ./roadmap/opportunity_popup.jade
+      each swimlane, order in details.swimlanes
+        +_opportunity(swimlane.opportunity, order)
 
 block script
   script

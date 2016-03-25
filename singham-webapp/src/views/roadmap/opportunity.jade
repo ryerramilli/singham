@@ -1,0 +1,9 @@
+mixin _opportunity(opportunity, order)
+  - var fromX = opportunity.timeOffset
+  - var pinheadRadius = 10
+  - var toX = fromX + opportunity.timePeriod - (pinheadRadius * 2)
+  - var y = 75 + order * 50
+  a( xlink:href='http://www.w3schools.com/svg/')
+    text(x='#{fromX}' y='#{y - 5}' fill='black') #{opportunity.name}
+  line(x1='#{fromX}' y1='#{y}' x2='#{toX}' y2='#{y}' stroke='blue' stroke-width='6')
+  circle(cx='#{toX+5}' cy='#{y}' r='#{pinheadRadius}' stroke='blue' stroke-width='4' fill='cyan')
