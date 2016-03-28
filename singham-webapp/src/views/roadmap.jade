@@ -11,7 +11,7 @@ block content
       include ./roadmap/calendar.jade
 
       each swimlane, order in details.swimlanes
-        +_opportunity(swimlane.opportunity, order)
+        +_opportunity(swimlane, order)
 
 block script
   script

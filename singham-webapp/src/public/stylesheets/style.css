@@ -11,18 +11,8 @@
 	display: none;
 }
 
-#singham section {
-	border-left-style: solid;
-	border-right-style: solid;
-	border-bottom-style: solid;
-    border-width: 1px;
-    border-style-top: none;
-    height: 600px;
-    border-radius: 5px;
-}
-
-#singham section, 
-#singham #calendar
+#singham section,
+#singham svg #calendar_pane
 {
 	width: 2700px;
 }
@@ -31,12 +21,10 @@
 	background-color: blue;
 }
 
-#singham #calendar {
-    padding-left: 0px;
-    padding-right: 0px;
-    margin-left: 0px;
-    margin-right: 0px;
-    position: relative;
+#singham svg #calendar_pane {
+	stroke: blue;
+	fill: #A0A0A0;
+	height: 600px;
 }
 
 #singham #calendar .certain {
@@ -66,44 +54,47 @@
     padding-right: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    
+
 }
 
-#singham .swimmer {
-	position: relative;
+#singham svg circle {
+	stroke-width: 4;
 }
 
-#singham .Responsible,
-#singham .Accountable,
-#singham .Consulted,
-#singham .Informed
- {
-	border-radius: 5px;
-	padding-left: 5px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	margin-bottom: 20px;
-	
+#singham svg line.swimmer {
+	stroke-width: 8;
 }
 
-#singham .Responsible {
-	background-color: #A0A0A0;
+#singham svg text {
+	fill: black;
 }
 
-#singham .Accountable {
-	background-color: #CCCCFF;
+#singham svg circle.Responsible {
+	fill: #CCFF99;
 }
 
-#singham .Consulted {
-	background-color: #FFCC99;
+#singham svg circle.Accountable {
+	fill: black;
 }
 
-#singham .Informed {
-	background-color: #66CCCC;
+#singham svg .Responsible {
+	stroke: #000000;
 }
 
-#singham .clear {
-	clear: both;
+#singham svg .Accountable {
+	stroke: #CCFF99;
+}
+
+#singham svg .Consulted {
+	stroke: #FFCC99;
+}
+
+#singham svg .Informed {
+	stroke: #66CCCC;
+}
+
+#singham svg line.gridLine {
+	stroke: white;
 }
 
 #singham .filler {
@@ -111,57 +102,48 @@
 	margin-bottom: 25px;
 }
 
-#singham .gridlines {
-	height: 600px;
-	border-radius: 5px;
-	position: absolute;
-	width: 80px;
-	z-index: -10;
-}
-
 #singham .even {
 	background-color: #F8F8F8;
 }
 
 #singham .opp_fly_out {
-	
+
 	display:none;
-	 
-	position: absolute; 
-	left: 0px; 
-	width: 300px; 
+
+	position: absolute;
+	left: 0px;
+	width: 300px;
 	z-index: 10000;
-	
-	padding: 30px; 
-	border: solid; 
+
+	padding: 30px;
+	border: solid;
 	border-bottom-left-radius: 50px;
 	border-top-right-radius: 10px;
-	 
+
 	background-color: white;
 }
 
 #singham .opp_fly_out dt::after {
-	
+
 	content: ":";
-	
+
 }
 
 #singham .opp_fly_out .close {
-	
-	position: absolute; 
-	right: 10px; 
+
+	position: absolute;
+	right: 10px;
 	top: 5px;
-	
+
 }
 
 #singham .opp_fly_out nav {
-	
+
 	float: right;
-		
+
 }
 
 #singham .oppfly_out nav div {
 	display: inline-block;
 	position: relative;
 }
-
