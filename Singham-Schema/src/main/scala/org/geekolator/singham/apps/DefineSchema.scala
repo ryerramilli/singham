@@ -1,11 +1,10 @@
 package org.geekolator.singham.apps
-import org.geekolator.singham.dsl.schema.SchemaPrimitives
-import org.geekolator.singham.dsl.schema.SchemaDSL.VertexImplicit
-import org.geekolator.singham.dsl.schema.SchemaDSL.EdgeImplicit
+import org.geekolator.singham.dsl.schema.Nouns
+import org.geekolator.singham.dsl.schema.Phrases.VertexImplicit
+import org.geekolator.singham.dsl.schema.Phrases.EdgeImplicit
 import com.thinkaurelius.titan.core.Cardinality
-import  org.geekolator.singham.dsl.schema.SinghamLogging
 
-object DefineSchema extends App  with SinghamLogging with SchemaPrimitives {
+object DefineSchema extends App with Nouns {
   
   ddlTransaction(() =>  
     {
@@ -28,11 +27,11 @@ object DefineSchema extends App  with SinghamLogging with SchemaPrimitives {
       val roadmap = vertex("Roadmap").isDescribedBy(name)
       val risk = vertex("InvestmentRisk").isDescribedBy(description)
       
-      edge("delivers").isDescribedBy(role).connects(roadmap , opportunity)
-      edge("impacts").connects(opportunity , capability)
-      edge("influences").connects(event , roadmap)
-      edge("carries").connects(opportunity , risk)
-      edge("contributes").connects(opportunity , kpi)
+      edge("delivers").isDescribedBy(role).itConnects(roadmap , opportunity)
+      edge("impacts").itConnects(opportunity , capability)
+      edge("influences").itConnects(event , roadmap)
+      edge("carries").itConnects(opportunity , risk)
+      edge("contributes").itConnects(opportunity , kpi)
       
       // Global nodes
       //SinghamStore.graph.addVertex(node.label, "name" -> node.name)

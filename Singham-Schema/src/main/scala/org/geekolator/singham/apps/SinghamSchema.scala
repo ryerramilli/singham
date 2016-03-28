@@ -1,6 +1,6 @@
 package org.geekolator.singham.apps
 
-object SinghamSchema extends App with org.geekolator.singham.dsl.schema.SchemaPrimitives {
+object SinghamSchema extends App with org.geekolator.singham.dsl.schema.Nouns {
 
   ddlTransaction(createSchema)
 

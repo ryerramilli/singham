@@ -16,7 +16,16 @@ $ mvn compile package  -Dtitan.backend=dynamodb -Denvironment=integration
 
 #### Modify Schema
 
-$ mvn exec:java -DmainClass="org.geekolator.singham.apps.DefineSchema" 
+Using the aws console create a specific user to manage our application using scripts
+1. This user should have been attached to the AmazonDynamoDBFullAccess
+
+$aws configure
+AWS Access Key ID [None]: <Enter access key here>
+AWS Secret Access Key [None]: <Enter secret key here>
+Default region name [None]: <Enter your preferred region here>  
+Default output format [None]:
+
+$ mvn exec:java -Dexec.mainClass=org.geekolator.singham.apps.DefineSchema
 
 ## API Reference
 

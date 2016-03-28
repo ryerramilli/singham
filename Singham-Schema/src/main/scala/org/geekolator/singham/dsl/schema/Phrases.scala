@@ -2,7 +2,7 @@ package org.geekolator.singham.dsl.schema
 
 import com.thinkaurelius.titan.core._
 
-object SchemaDSL extends SinghamLogging  {
+object Phrases extends SinghamLogging  {
 
   implicit class VertexImplicit(vertex: VertexLabel) {
 
@@ -32,7 +32,7 @@ object SchemaDSL extends SinghamLogging  {
   
   implicit class EdgeImplicit(edge: EdgeLabel) {
     
-    def connects(vertexA: VertexLabel, vertexB: VertexLabel) {
+    def itConnects(vertexA: VertexLabel, vertexB: VertexLabel) {
       
       import gremlin.scala._
 
