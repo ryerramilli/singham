@@ -42,4 +42,6 @@ object DescribeSchema extends App with org.geekolator.singham.dsl.schema.SchemaP
   
   this.getIndexes()
   
+  System exit 0
+  
 }

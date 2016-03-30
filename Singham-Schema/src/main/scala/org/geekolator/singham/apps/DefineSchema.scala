@@ -38,5 +38,7 @@ object DefineSchema extends App with Nouns {
       
     
     })
+    
+    System exit 0
   
 }
